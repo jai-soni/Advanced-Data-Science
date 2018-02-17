@@ -1,0 +1,12 @@
+FROM python
+
+RUN pip install pandas
+RUN pip install boto
+RUN pip install beautifulsoup4
+RUN pip install urllib3
+Run pip install requests
+Run pip install lxml
+RUN pip install html5lib
+
+COPY Part2_new.py /Part2_new.py
+CMD [ "python", "./Part2_new.py","2007","42324","23894332","us-west-2"]
