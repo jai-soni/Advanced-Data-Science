@@ -8,5 +8,5 @@ Run pip install requests
 Run pip install lxml
 RUN pip install html5lib
 
-COPY Part2_new.py /Part2_new.py
-CMD [ "python", "./Part2_new.py","2007","42324","23894332","us-west-2"]
+COPY Problem2.py /Problem2.py
+CMD [ "python", "./Problem2.py","2012","42324","23894332","us-west-2"]
