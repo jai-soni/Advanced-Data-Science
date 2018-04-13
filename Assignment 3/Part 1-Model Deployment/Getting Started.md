@@ -5,7 +5,7 @@
 The data set is taken from UCI Machine Learning Repository, which can be accessed with below link https://archive.ics.uci.edu/ml/datasets/gas+sensor+array+drift+dataset . 
 
 The data set contains measurements from 16 chemical sensors utilized in simulations for drift compensation in a discrimination task of 6 gases at various levels of concentrations.The goal is to achieve good performance (or as low degradation as possible) over time.
-The dataset was gathered within January 2007 to February 2011 (36 months) in a gas delivery platform facility situated at the ChemoSignals Laboratory in the BioCircuits Institute, University of California San Diego. Being completely operated by a fully computerized environment â€”controlled by a LabVIEWâ€“National Instruments software on a PC fitted with the appropriate serial data acquisition boards. The measurement system platform provides versatility for obtaining the desired concentrations of the chemical substances of interest with high accuracy and in a highly reproducible manner, minimizing thereby the common mistakes caused by human intervention and making it possible to exclusively concentrate on the chemical sensors for compensating real drift.
+The dataset was gathered within January 2007 to February 2011 (36 months) in a gas delivery platform facility situated at the ChemoSignals Laboratory in the BioCircuits Institute, University of California San Diego. Being completely operated by a fully computerized environment â€”controlled by a LabVIEW“National Instruments software on a PC fitted with the appropriate serial data acquisition boards. The measurement system platform provides versatility for obtaining the desired concentrations of the chemical substances of interest with high accuracy and in a highly reproducible manner, minimizing thereby the common mistakes caused by human intervention and making it possible to exclusively concentrate on the chemical sensors for compensating real drift.
 The resulting dataset comprises recordings from six distinct pure gaseous substances, namely Ammonia, Acetaldehyde, Acetone, Ethylene, Ethanol, and Toluene, each dosed at a wide variety of concentration values ranging from 5 to 1000 ppmv.
 
 The attributes in the data set contain set of 8 checmical features from 1 sensor with a total of 16 sensors. Thus we have a total of     16 X 8 =128 features in total
@@ -20,7 +20,15 @@ Given the above mentioned data, Build a pipeline with Luigi that incorporates:
  4. Run various  machine learning models on the data
  5. Get the Accuracy and Error metrics for all the models and store them in a csv file with ranking of models
  6. Pickle all the models and upload to S3 bucket along with error metrics
- 
+
+<h3> Approach</h3>
+ <b> Data Ingestion </b>
+  <p>1. The URL to data is provided yielding a zip file which, when unzipped contains 10 batch.dat files for different months.</p>
+  <p>2. Batch files are now appended to a Pandas dataframe and saved to a CSV file with the name 'RawData.csv'.</p>
+ <b> Data Cleaning </b>
+ <p>1. The columns heads are a string of integers  from 0 to 128. The columns name is converted to more relevant names like 'S1F1,S1F2...S16F8', Where 'S1F2' represents Sensor:1 Feature:2 .</p>
+ <p>2. From EDA, we found the data didnot contain any missing values</p>
+
 <h2>Run the code on Docker</h2>
 
 <h4>Pre-Requisites:</h4>
