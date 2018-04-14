@@ -125,7 +125,7 @@ def uploadLocalUser():
 
 
 		#Creating S3 Connection To upload the result files
-		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
+		conn = S3Connection('accessKey', 'secretAccessKey')
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
@@ -211,7 +211,7 @@ def uploadLocal():
 
 
 		#Creating S3 Connection To upload the result files
-		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
+		conn = S3Connection('accessKey', 'secretAccessKey')
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
@@ -307,7 +307,7 @@ def uploadLink():
 
 		
 		#Creating S3 Connection To upload the result files
-		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
+		conn = S3Connection('accessKey', 'secretAccessKey')
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
@@ -404,7 +404,7 @@ def resultJson():
 		text_file.close()
 
 		#Create a connection to S3 to upload the text file
-		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
+		conn = S3Connection('accessKey', 'secretAccessKey')
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
