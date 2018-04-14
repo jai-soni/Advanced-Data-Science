@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+
+    label {
+            font-family: 'Roboto Medium', sans-serif;
+            vertical-align: middle;
+
+    }
+    input{
+      vertical-align: middle;
+    }
+    
+
+    #main{
+      background-color:#;
+    }
+    #uploadform{
+      text-align: center;
+    }
+
+    #uploadlink{
+      text-align: center;
+    }
+
+    input[type=text], select {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+}
+
+input[type=submit] {
+    width: 70%;
+    background-color: #696969;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #808080;
+}
+
+
+.fieldHeading{
+  width: 50px;
+  vertical-align:middle;
+}
+.fieldSpan {
+  overflow: hidden;
+  vertical-align:middle;
+}
+  
+.header{
+  font-family: 'Roboto Medium', sans-serif;
+  text-align: center;
+}
+
+#link{
+  width: 400px;
+}
+
+
+#formsubmit{
+  width:200px;
+}
+#fileupload{
+  width: 200px;
+}
+
+#uploadJson{
+  text-align: center;
+
+}
+
+html{
+      background-image: url("https://previews.123rf.com/images/annaleni/annaleni1603/annaleni160300050/53438389-thin-line-green-power-eco-seamless-pattern-website-design-and-tile-background-in-trendy-modern-outli.jpg");
+    }
+
+
+}
+  </style>
+</head>
+
+<body id="main">
+
+<h3 class= "header" align="center">PROVIDE THE DATA FILE</h3>
+
+<div class="maindiv">
+  
+
+  <h4 class="header" align="center">OR UPLOAD THE FILE FROM SYSTEM</h4>
+  <form method="POST" enctype=multipart/form-data action ="{{url_for('uploadLocalUser')}}" id="uploadform">
+      <input type="file" name="user_file" align="center"><br>
+      <input type = "text" id= "resultindex" name = "resultindex" placeholder="Enter the index you want to get the result for" value = "{{ request.form.resultindex }}"><br>
+      <input type="submit" id="fileupload">
+  </form>
+
+
+  
+</div>
+
+
+
+</body>
+</html>

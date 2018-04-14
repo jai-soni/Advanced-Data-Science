@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Flask Intro - login page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        
+      #maindiv{
+        position: absolute;
+        width: 300px;
+        height: 200px;
+        z-index: 15;
+        top: 50%;
+        left: 50%;
+        margin: -140px 0 0 -150px;
+ 
+      }
+
+      #main{
+        background-color: #696969;
+        background-image: url("https://previews.123rf.com/images/annaleni/annaleni1603/annaleni160300050/53438389-thin-line-green-power-eco-seamless-pattern-website-design-and-tile-background-in-trendy-modern-outli.jpg");
+      }
+
+       {
+        
+      }
+
+      #header{
+            font-family: 'Roboto Medium', sans-serif;
+            vertical-align: middle;
+            
+      }
+      #input{
+        height:30px;
+        width: 200px;
+      }
+
+      #password{
+        height:30px;
+        width:200px;
+      }
+
+      input[type=submit] {
+            width: 70%;
+            background-color: #696969;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+      }
+
+      input[type=submit]:hover {
+      background-color: #808080;
+}
+
+      #loginbtn{
+        width :180px;
+      }
+    </style>
+  </head>
+  <body id = "main">
+    <div id = "maindiv">
+      <h3 align="center" id="header">PLEASE LOGIN.</h3>
+      <form action="" method="post" id="loginform" align="center">
+        <input type="text" name="username" placeholder="Enter your username" value="{{ request.form.username }}" id ="input"><br><br>
+        <input type="password" name="password" placeholder="Enter your password" value="{{ request.form.password }}" id="password"><br><br>
+        <input class = "btn btn-default" type = "submit" value= "Login" id = "loginbtn">
+      </form>
+    </div>
+  </body>
+</html>
