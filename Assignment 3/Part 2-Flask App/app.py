@@ -8,26 +8,11 @@ from boto.s3.key import Key
 from os import listdir
 from os.path import isfile, join
 from pandas.io.json import json_normalize
-import sys
 
 
 app = Flask(__name__)
 
-argLen=len(sys.argv)
-accessKey=''
-secretAccessKey=''
 
-for i in range(1,argLen):
-    val=sys.argv[i]
-
-    if val.startswith('accessKey='):
-        pos=val.index("=")
-        accessKey=val[pos+1:len(val)]
-        continue
-    elif val.startswith('secretAccessKey='):
-        pos=val.index("=")
-        secretAccessKey=val[pos+1:len(val)]
-        continue
 
 @app.route('/')
 def home():
@@ -94,7 +79,7 @@ def uploadLocalUser():
 				temp.append(C_Name)
         
 		data.columns = temp
-
+		
 
 		for col in data.columns.tolist():
 			data[col]=data[col].astype('float64')
@@ -140,7 +125,7 @@ def uploadLocalUser():
 
 
 		#Creating S3 Connection To upload the result files
-		conn = S3Connection(accessKey, secretAccessKey)
+		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
@@ -226,7 +211,7 @@ def uploadLocal():
 
 
 		#Creating S3 Connection To upload the result files
-		conn = S3Connection(accessKey, secretAccessKey)
+		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
@@ -322,7 +307,7 @@ def uploadLink():
 
 		
 		#Creating S3 Connection To upload the result files
-		conn = S3Connection(accessKey, secretAccessKey)
+		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
@@ -419,7 +404,7 @@ def resultJson():
 		text_file.close()
 
 		#Create a connection to S3 to upload the text file
-		conn = S3Connection(accessKey, secretAccessKey)
+		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
