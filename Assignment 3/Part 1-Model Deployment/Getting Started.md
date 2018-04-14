@@ -41,17 +41,36 @@ Given the above mentioned data, Build a pipeline with Luigi that incorporates:
 <p>3. These feature columns are then saved to a new CSV file with name 'SelectedData'</p>
 
 <p><b>Classifiation Models and Predictions</p></b>
-<p>1. For classification 
-
+<p>1. For classification , we have divided the data into Training and Testing set with Test size of 20%.</p>
+<p>2. Selected feature columns are taken as X and ClassNumber column is taken as Y</p>
+<p>3. The following models are trained on this data and the Test and Train Accuracy and Error metrics are saved using pickle file.<p>
+<p> Models with Test Accuracy:</p> 
+ <ul>
+ <li> RandomForestClassifier - 0.95
+ <li> DecisionTreeClassifier - 0.90
+ <li> LogisticRegression - 0.79
+ <li> MLPClassifier - 0.64
+ <li> GaussianNB - 0.56
+</ul>
+<p><b>Uploading to S3 bucket</p></b>
+<p>1. The access key and Secret access keys are taken as command line arguments, the default keys are invalid</p>
+<p><b> Luigi Pipeline</p></b>
+<p> Luigi Pipeline provides reusability of data by providing a checkpoint type state, where if something fails , the code will start running from the previous checkpoint. This saves a lot of time since we donot have to go through all the procecss of something fails.</p>
+<p>1. Five clases are made for luigi pipline which create a directed graph like structure.</p>
+<p>2. Name of classes:</p>
+<ul><li> download_data2csv()</li>
+ <li> clean_data()</li>
+ <li> feature_selection()</li>
+ <li> run_models()</li>
+ <li> upload2S3()</li>
  
-
 <h2>Run the code on Docker</h2>
 
 <h4>Pre-Requisites:</h4>
  1. Docker should be installed and running
 
 <h4> Docker Commands to upload models in Amazon S3</h4>
- 1. Run the Following command and provide AWS access and secret access keys
+ <p>1. Run the Following command and provide AWS access and secret access keys</p>
  
 docker run jaisoni/gassensordata:new python Luigi_Pipeline.py upload2S3 --local-scheduler --accessKey "<AWSAccessKey>" --secretAccessKey "<AWS_SecretAccessKey>"
 
@@ -63,3 +82,4 @@ docker run jaisoni/gassensordata:new python Luigi_Pipeline.py upload2S3 --local-
 <h4>Commands to run in Terminal</h4>
  <p>1. Run 'luigid &' to start local scheduler of luigi pipeline</p>
  <p>2. Run 'python Luigi_Pipeline.py upload2S3 --local-scheduler --accessKey "<AWSAccessKey>" --secretAccessKey "<AWS_SecretAccessKey>"'</p>
+ 
