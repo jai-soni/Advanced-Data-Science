@@ -22,12 +22,28 @@ Given the above mentioned data, Build a pipeline with Luigi that incorporates:
  6. Pickle all the models and upload to S3 bucket along with error metrics
 
 <h3> Approach</h3>
- <b> Data Ingestion </b>
+ <p><b> Data Ingestion </b><p>
   <p>1. The URL to data is provided yielding a zip file which, when unzipped contains 10 batch.dat files for different months.</p>
   <p>2. Batch files are now appended to a Pandas dataframe and saved to a CSV file with the name 'RawData.csv'.</p>
- <b> Data Cleaning </b>
+ <p><b> Data Cleaning </b></p>
  <p>1. The columns heads are a string of integers  from 0 to 128. The columns name is converted to more relevant names like 'S1F1,S1F2...S16F8', Where 'S1F2' represents Sensor:1 Feature:2 .</p>
  <p>2. From EDA, we found the data didnot contain any missing values</p>
+ <p>3. The values were transformed from '90:3.399659' to 3.399659 where '90' was the column number.</p>
+ <p>4. The '0' column contained the gas for which the sensor data was taken, thus column name is renamed as 'ClassNumber'.</p>
+ <p>5. This data is then saved as 'CleanedData.csv' file
+ <p><b> Data Preprocessing </b></p> 
+ <p>1. On performing EDA, we noticed quite many outliers in the data, which would affect accuracy of the model</p>
+ <p>2. After, iterating through many approaches of substituting these outliers, we finalised on substituting outlier values with median </p>
+<p><b>Feature Selection</p></b>
+<p>For Sensor drift data, we need to classify the data into 6 classes, i.e what data relates to what class, where class is nothing but gases numbered from 1 to 6.</p>
+<p>1. For Classification problem such as this, We opted to use Sklearns make classification feature to get the feature importances.</p>
+<p>2. As a result, we got 25 Important features with there ranks</p>
+<p>3. These feature columns are then saved to a new CSV file with name 'SelectedData'</p>
+
+<p><b>Classifiation Models and Predictions</p></b>
+<p>1. For classification 
+
+ 
 
 <h2>Run the code on Docker</h2>
 
@@ -41,9 +57,9 @@ docker run jaisoni/gassensordata:new python Luigi_Pipeline.py upload2S3 --local-
 
 <h2>Run the code on local machine</h2>
 <h4>Pre-Requisites:</h4>
- 1. Start a Ubuntu/Linux instance or system
- 2. Clone the repository and save the Luigi_Pipeline.py in desired location
- 3. Install python libraries give in requirements.txt file. This can be done using 'pip install -r /path/to/requirements.txt'
+ <p>1. Start a Ubuntu/Linux instance or system</p>
+ <p>2. Clone the repository and save the Luigi_Pipeline.py in desired location</p>
+ <p>3. Install python libraries give in requirements.txt file. This can be done using 'pip install -r /path/to/requirements.txt'</p>
 <h4>Commands to run in Terminal</h4>
- 1. Run 'luigid &' to start local scheduler of luigi pipeline
- 2. Run 'python Luigi_Pipeline.py upload2S3 --local-scheduler --accessKey "<AWSAccessKey>" --secretAccessKey "<AWS_SecretAccessKey>"'
+ <p>1. Run 'luigid &' to start local scheduler of luigi pipeline</p>
+ <p>2. Run 'python Luigi_Pipeline.py upload2S3 --local-scheduler --accessKey "<AWSAccessKey>" --secretAccessKey "<AWS_SecretAccessKey>"'</p>
