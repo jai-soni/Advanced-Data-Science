@@ -8,10 +8,28 @@ from boto.s3.key import Key
 from os import listdir
 from os.path import isfile, join
 from pandas.io.json import json_normalize
-
+import urllib
+import sys
 
 app = Flask(__name__)
 
+argLen=len(sys.argv)
+accessKey=''
+secretAccessKey=''
+
+for i in range(1,argLen):
+    val=sys.argv[i]
+
+    if val.startswith('accessKey='):
+        pos=val.index("=")
+        accessKey=val[pos+1:len(val)]
+		#print(accessKey)
+        continue
+    elif val.startswith('secretAccessKey='):
+        pos=val.index("=")
+        secretAccessKey=val[pos+1:len(val)]
+		#print(secretAccessKey)
+        continue
 
 
 @app.route('/')
@@ -80,7 +98,16 @@ def uploadLocalUser():
         
 		data.columns = temp
 		
-
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/RandomForestClassifier.sav", filename= 'RandomForestClassifier.sav')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/LogisticRegression.sav", filename= 'LogisticRegression.sav')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/GaussianNB.sav", filename= 'GaussianNB.sav')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/DecisionTreeClassifier.sav", filename= 'DecisionTreeClassifier.sav')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/Feature_list.txt", filename= 'Feature_list.txt')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/Model_Accuracy.txt", filename= 'Model_Accuracy.txt')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/Model_Confusion_Metrics.txt", filename= 'Model_Confusion_Metrics.txt')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/MLPClassifier.sav", filename= 'MLPCLassifier.sav')
+		
+		
 		for col in data.columns.tolist():
 			data[col]=data[col].astype('float64')
 		with open('Feature_list.txt') as f:
@@ -125,7 +152,7 @@ def uploadLocalUser():
 
 
 		#Creating S3 Connection To upload the result files
-		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
+		conn = S3Connection(accessKey, secretAccessKey)
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
@@ -165,7 +192,16 @@ def uploadLocal():
         
 		data.columns = temp
 
-
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/RandomForestClassifier.sav", filename= 'RandomForestClassifier.sav')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/LogisticRegression.sav", filename= 'LogisticRegression.sav')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/GaussianNB.sav", filename= 'GaussianNB.sav')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/DecisionTreeClassifier.sav", filename= 'DecisionTreeClassifier.sav')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/Feature_list.txt", filename= 'Feature_list.txt')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/Model_Accuracy.txt", filename= 'Model_Accuracy.txt')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/Model_Confusion_Metrics.txt", filename= 'Model_Confusion_Metrics.txt')
+		urllib.request.urlretrieve("https://s3.amazonaws.com/case3/MLPClassifier.sav", filename= 'MLPCLassifier.sav')
+		
+		
 		for col in data.columns.tolist():
 			data[col]=data[col].astype('float64')
 		with open('Feature_list.txt') as f:
@@ -211,7 +247,7 @@ def uploadLocal():
 
 
 		#Creating S3 Connection To upload the result files
-		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
+		conn = S3Connection(accessKey, secretAccessKey)
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
@@ -307,7 +343,7 @@ def uploadLink():
 
 		
 		#Creating S3 Connection To upload the result files
-		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
+		conn = S3Connection(accessKey, secretAccessKey)
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key
@@ -404,7 +440,7 @@ def resultJson():
 		text_file.close()
 
 		#Create a connection to S3 to upload the text file
-		conn = S3Connection('AKIAI2DBXQOFTR5CJFBQ', '2I3/JbqX8n67vdL0WF/dUwLOAJnlfwk81Td8c/du')
+		conn = S3Connection(accessKey, secretAccessKey)
 		# Connecting to specified bucket
 		b = conn.get_bucket('case3')
 		#Initializing Key

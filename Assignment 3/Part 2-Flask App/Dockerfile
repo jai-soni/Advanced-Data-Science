@@ -34,8 +34,8 @@ ADD templates/welcome.html /templates/
 
 
 
-ADD app.py /
 
+ADD app.py /
 
 EXPOSE 5000
 CMD [ “python ”, “./app.py” ]
