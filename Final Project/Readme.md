@@ -10,6 +10,8 @@ Project Name: Twitter Sentiment analysis
   Week2:
 1. Gathered data from newsapi for the lastest news from different region and categories.
 2. Also, collecting data from tweepy api for real time twitter feeds.
+3. Cleaning twitter feeds for the proper sentiment analysis.
+4. Exploratory data analysis on the twitter feeds.
 3. Implemented Baseline NLP model for sentiment analysis.
 4. Implemented 1st draft for NLP model using Random Forest for Twitter sentiment analysis.
 5. Given a try for plotting geography coordinates from twitter feeds on map using bokeh google map package.
