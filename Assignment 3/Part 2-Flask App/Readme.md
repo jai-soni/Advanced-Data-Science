@@ -13,7 +13,7 @@ docker build -f Dockerfile .
 
 docker tag {tag_name} username/repo:new
 
-docker run -p 8000:5000 username/repo:new python app.py
+docker run -p 8000:5000 jaisoni/gassensorflask:new python app.py accessKey=''secretAccessKey=''
 
 application has been hosted on: http://ec2-52-87-245-219.compute-1.amazonaws.com
 
