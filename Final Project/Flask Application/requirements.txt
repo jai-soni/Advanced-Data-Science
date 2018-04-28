@@ -1,0 +1,15 @@
+aylien_news_api==1.0.0
+textblob==0.15.1
+geopy==1.13.0
+bokeh==0.12.10
+numpy==1.13.3
+wordcloud==1.4.1
+nltk==3.2.4
+pandas==0.22.0
+tweepy==3.6.0
+matplotlib==2.1.0
+Flask==0.12.2
+boto==2.48.0
+scikit_learn==0.19.1
+vaderSentiment==3.2.1
+scipy == 1.0.0

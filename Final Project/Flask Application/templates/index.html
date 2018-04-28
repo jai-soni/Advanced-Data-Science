@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+		  <meta charset="utf-8">
+  		  <meta name="viewport" content="width=device-width, initial-scale=1">
+  		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+
+		{% block head %}
+			<title>{% block title %} Title!{% endblock %}</title>
+		{% endblock %}
+	<style type="text/css">
+		
+	</style>
+</head>
+
+<body id="main">
+	<div class="container">
+    		<div class="row">
+        			<div class="col-md-12" id={{ chartID|safe }} class="chart">
+        			</div>
+    		</div>
+    		<hr>
+
+    		<div class="row" style="text-align:center;">
+        			<div class="col-md-12" id ="image">
+        				<img src="../static/test.jpg" class= "NO-CACHE" height="600px" width="1200px"> </img>
+        			</div>
+    		</div>
+    		<hr>
+
+    		<div class="row pie">
+				
+    		</div>
+
+    		<br>
+    		<hr>
+    		<div class="row">
+    			<div class="col-md-6">
+    				<h3>Summary using our Model</h3>
+    				<p>{{ my_summary | safe }}</p>
+    			</div>
+    			<div class="col-md-6">
+    				<h3>Summary using vader</h3>
+    				<p>{{ summary | safe}} </p>
+    			</div>
+    			
+        			
+    		</div>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+			<script src="http://code.highcharts.com/highcharts.js"></script>
+			<script src="static/main.js"></script>	
+			<script>
+			      function generatePie(element,id)
+			       {
+			      		var pieData =
+			      		 [
+	   						{
+	      						value: element.total_positive,
+	      						label: 'Positive',
+	      						color: '#66ff99'
+	   						},
+	   						{
+					     		value: element.total_negative,
+					     		label: 'Negative',
+					     		color: '#cc0000'
+					 		},
+					  		{
+					      		value: element.total_neutral,
+					      		label: 'Neutral',
+					      		color: '#999999'
+					   		}
+						];
+						new Chart(document.getElementById("chart"+id).getContext("2d")).Pie(pieData);
+			      }
+
+	    		var nods = document.getElementsByClassName('NO-CACHE');
+				for (var i = 0; i < nods.length; i++)
+				{
+	    			nods[i].attributes['src'].value += "?a=" + Math.random();
+
+				}
+
+
+				var chart_id = {{ chartID|safe }}
+				var series = {{ series|safe }}
+				var title = {{ title|safe }}
+				var xAxis = {{ xAxis|safe }}
+				var yAxis = {{ yAxis|safe }}
+				var chart = {{ chart|safe }}
+
+
+				var list = {{ my_dict | safe}};
+				console.log(list);
+			    for(var i = 0; i < Object.keys(list).length; i++)
+			     {
+			    	$( ".pie" ).append('<div class="col-xs-12 col-sm-6 col-md-3" style="height:340px;"><b>'+list[i].name+'</b><br><canvas id="chart' + i + '" width="270" height="270"></canvas></div>'); 
+			    	generatePie(list[i],i);
+
+			     }
+				</script>
+
+				<div class = "map-button" align="center" style="width: 100%">
+					<form action= "/getLocations" method ="post" align="center">
+					<button class= "btn btn-primary" onclick="">Get Locations</button>
+					</form>
+				</div>
+
+
+
+	</div>
+
+</body>
+</html>

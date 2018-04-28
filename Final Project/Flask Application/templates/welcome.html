@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <script type="text/javascript">
+ 
+    </script>
+
+    <style type="text/css">
+      #main{
+        background-image: url("https://image.freepik.com/vector-gratis/fondo-de-lineas-poligonales_1035-7063.jpg");
+      }
+
+      #homepagebutton{
+        font-family: 'Roboto Medium', sans-serif;
+        margin-left: 30px;
+        margin-top: 1px;
+      }
+      .title {
+        margin-top:140px;
+        margin-bottom: 30px;
+      }
+
+      #user_keyword{  
+        width: 600px;
+        border-color: #8080ff;
+        } 
+
+  
+    </style>
+
+    
+  </head>
+  <body id = 'main'>
+    <div class="container">
+      
+      <form action="/checkInput" method="post" id="seachform" align="center">
+      <div class="title"><span style="font-size:75px;">HAMMER!</span></div>
+      <input type="text" name="user_keyword" value="{{ request.form.user_keyword }}" placeholder = "Enter a keyword" id ="user_keyword" maxlength="30">
+      <br>
+      <br>
+      <button class="btn btn-primary" id='homepagebutton'}}">Search</button>
+      </form>
+      <h3 style="text-align: center;"><p>{{ error | safe}}</p><h3>
+    </div>
+  </body>
+</html>
