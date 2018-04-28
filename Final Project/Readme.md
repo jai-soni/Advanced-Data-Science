@@ -1,5 +1,9 @@
 <h2>Sentiment Analysis of News Articles on Social Media</h2>
-  
+
+### Run the web application:
+
+http://hammer-2afbe70786aab84d.elb.us-east-2.amazonaws.com/welcome
+
 <h3>Week 1:</h3>
 <p>1. Defining the flow of the Project.
 <p>2. Exploring machine learning packages used for gathering news feeds and the twitter feeds.
