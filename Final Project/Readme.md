@@ -2,7 +2,7 @@
 
 ### Run the web application:
 
-http://hammer-2afbe70786aab84d.elb.us-east-2.amazonaws.com/welcome
+http://hammer-5ad846570655d593.elb.us-east-1.amazonaws.com/welcome
 
 <h3>Week 1:</h3>
 <p>1. Defining the flow of the Project.
