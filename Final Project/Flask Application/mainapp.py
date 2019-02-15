@@ -356,10 +356,10 @@ def checkInput(chartID = 'chart_ID', chart_type = 'bar', chart_height = 350):
         app_key = 'f6c7d9ae180951898bf6263d64dac247'
 
         # Tweepy keys
-        consumer_key = "1Cvu0r3U1bafJE0prSuJXUhS6"
-        consumer_secret = "l2NhimsNqLQbM490spvEt2sDHJs4KJEeWQ2FkHP2P0LpjggtjY"
-        access_token = "420232136-pNrWEakqUOq8kbHPsX2jCTrm7ocyAyIYpHe3mCNZ"
-        access_token_secret = "wfzXzbtqYfhIhsD2egUJC8l7Gy2fMcrKrw2Pq50BW9qZA"
+        consumer_key = "1Cvu0r3U1bafJE0puJXUhS6"
+        consumer_secret = "l2NhimsNqLQbM490spvEt2sDHJs4KJEeWQ2FkHP2PpjggtjY"
+        access_token = "420232136-pNrWEakqUOq8kbHPsX2jrm7ocyAyIYpHe3mCNZ"
+        access_token_secret = "wfzXzbtqYfhIhsD2egUJC8ly2fMcrKrw2Pq50BW9qZA"
 
         news_response = get_aylien_news(keyword,app_id,app_key)
         api = authenticate_tweepy(consumer_key,consumer_secret,access_token,access_token_secret)
